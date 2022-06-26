@@ -12,7 +12,7 @@ for (const file of eventFiles) {
 		try {
 			await event.execute(client, ...args);
 		} catch (e) {
-			spam.send("Error: " + (e as Error).message);
+			spam.send(`Error: ${(e as Error).message}`);
 		}
 	});
 }

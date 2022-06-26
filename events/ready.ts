@@ -10,7 +10,7 @@ const rest = new REST({ version: '10' }).setToken(token);
 export default {
     name: "ready",
     execute: async (client) => {
-        updateSpam(client.guilds.cache.find(g => g.id === guild) as Guild | null);
+        updateSpam(client.guilds.cache.find(g => g.id == guild) as Guild | null);
         client.user?.setActivity("a lot of things...", { type: "WATCHING" });
 
         await rest.put(

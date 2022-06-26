@@ -22,11 +22,11 @@ export default {
             let hexify = (num : string) => {
                 let parsed = parseInt(num).toString(16);
                 if (parsed.length < 2) {
-                    parsed = "0" + parsed;
+                    parsed = `0${parsed}`;
                 }
                 return parsed;
             };
-            code = "#" + rgb?.map(hexify).join("");
+            code = `#${rgb?.map(hexify).join("")}`;
         } else {
             code = baseCode;
             rgb = code.replace("#", "").match(/.{2}/g)?.map(c => parseInt(c, 16).toString()) as string[];
@@ -35,7 +35,7 @@ export default {
             return num == 0 ? "red" : num == 1 ? "green" : "blue";
         };
         let rgbPer = () => {
-            return rgb?.map(num => ((parseFloat(num) / 255) * 100).toFixed(2).replace(".00","").toString() + "% " + nameColor(rgb?.indexOf(num))).join(", ");
+            return rgb?.map(num => `${((parseFloat(num) / 255) * 100).toFixed(2).replace(".00","").toString()}% ${nameColor(rgb?.indexOf(num))}`).join(", ");
         }
         const embed = new MessageEmbed();
         embed.setTitle(code);

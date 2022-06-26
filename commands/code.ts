@@ -26,7 +26,7 @@ export default {
                 let func = new AsyncFunction('client', 'interaction', data as string);
                 value = await func(client, interaction);
             } catch (e) {
-                value = "Error: " + e as string;
+                value = `Error: \`\`\`js\n${e as string}\n\`\`\``;
             }
             return value;
         };

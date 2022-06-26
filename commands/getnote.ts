@@ -29,7 +29,7 @@ export default {
         } catch (e) {
             let error = e as Error;
             if (error.message.startsWith("ENOENT")) {
-                data = "Couldn't find note with ID " + id + "!";
+                data = `Couldn't find note with ID ${id}!`;
             } else {
                 data = "Couldn't fetch note!";
             }

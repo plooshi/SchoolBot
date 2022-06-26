@@ -28,7 +28,7 @@ export default {
         writeFileSync(`./data/notes/${interaction.user.id}/${id}.txt`, interaction.options.getString('note') as string);
         writeFileSync(`./data/notes/${interaction.user.id}/_next`, (id + 1).toString());
         await interaction.reply({
-            content: "Saved note with id " + id + "!",
+            content: `Saved note with id ${id}!`,
             ephemeral: true
         });
     }

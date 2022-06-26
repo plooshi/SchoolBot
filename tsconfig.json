@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "./out",
+    "moduleResolution": "Node",
+    "lib": [
+      "ES2022"
+    ]
+  },
+  "include": [
+    "*.ts",
+    "events/**/*.ts",
+    "commands/**/*.ts"
+  ]
+}

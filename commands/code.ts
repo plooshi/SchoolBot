@@ -1,6 +1,7 @@
 import { Command } from "../types.js";
 import { SlashCommandBuilder, SlashCommandStringOption } from "@discordjs/builders";
 import axios from "axios";
+import * as djs from "discord.js";
 
 const builder = new SlashCommandBuilder();
 builder.setName("code");
@@ -23,8 +24,8 @@ export default {
         let codeFunc = async () => {
             let value;
             try {
-                let func = new AsyncFunction('client', 'interaction', data as string);
-                value = await func(client, interaction);
+                let func = new AsyncFunction('djs', 'client', 'interaction', data as string);
+                value = await func(djs, client, interaction);
             } catch (e) {
                 value = `Error: \`\`\`js\n${e as string}\n\`\`\``;
             }

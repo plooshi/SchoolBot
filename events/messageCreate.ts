@@ -29,5 +29,10 @@ export default {
             await message.channel.send(`<@!${message.author.id}> Please don't mention more than 5 people at once!`);
             await message.delete();
         }
+
+        // warning
+        if (message.author.id == "895828458108772352") {
+            await message.reply("LANGUAGE");
+        }
     }
 } as Event<"messageCreate">;

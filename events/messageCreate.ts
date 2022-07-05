@@ -31,7 +31,7 @@ export default {
         }
 
         // warning
-        if (message.author.id == "895828458108772352") {
+        if (message.author.id == "895828458108772352" || message.content == "faith") {
             await message.reply("LANGUAGE");
         }
     }

@@ -7,5 +7,8 @@
   },
   "type": "module",
   "main": "out/bot.js",
-  "name": "schoolbot"
+  "name": "schoolbot",
+  "scripts": {
+    "debug": "nodemon --watch **/*.ts --exec 'tsc -p d:\\SchoolBot\\tsconfig.json && node'"
+  }
 }

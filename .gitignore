@@ -3,3 +3,4 @@ data
 node_modules
 out
 package-lock.json
+nodemon.json

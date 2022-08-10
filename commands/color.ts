@@ -39,7 +39,11 @@ export default {
         }
         const embed = new EmbedBuilder();
         embed.setTitle(code);
-        embed.setColor(code as HexColorString);
+        try {
+            embed.setColor(code as HexColorString);
+        } catch {
+            embed.setColor("#000000");
+        }
         embed.setDescription(`${rgbPer()}`);
         interaction.reply({ embeds: [embed] });
     }

@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, SlashCommandStringOption } from '@discordjs/builders';
 import { Command } from '../types.js';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { CommandInteractionOptionResolver } from 'discord.js';
 
 let builder = new SlashCommandBuilder();
 
@@ -25,7 +26,7 @@ export default {
         } catch {
             id = 0;
         }
-        writeFileSync(`./data/notes/${interaction.user.id}/${id}.txt`, interaction.options.getString('note') as string);
+        writeFileSync(`./data/notes/${interaction.user.id}/${id}.txt`, (interaction.options as CommandInteractionOptionResolver).getString('note') as string);
         writeFileSync(`./data/notes/${interaction.user.id}/_next`, (id + 1).toString());
         await interaction.reply({
             content: `Saved note with id ${id}!`,

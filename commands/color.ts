@@ -1,6 +1,6 @@
 import { Command } from "../types.js";
 import { SlashCommandBuilder, SlashCommandStringOption } from "@discordjs/builders";
-import { HexColorString, MessageEmbed } from "discord.js";
+import { HexColorString, EmbedBuilder, CommandInteractionOptionResolver } from "discord.js";
 
 const builder = new SlashCommandBuilder();
 builder.setName("color");
@@ -15,7 +15,7 @@ builder.addStringOption(
 export default {
     data: builder,
     execute: async (client, interaction) => {
-        const baseCode = interaction.options.getString("code");
+        const baseCode = (interaction.options as CommandInteractionOptionResolver).getString("code");
         let code : string, rgb : string[] | undefined;
         if (!baseCode?.startsWith("#")) {
             rgb = baseCode?.split(", ");
@@ -37,7 +37,7 @@ export default {
         let rgbPer = () => {
             return rgb?.map(num => `${((parseFloat(num) / 255) * 100).toFixed(2).replace(".00","").toString()}% ${nameColor(rgb?.indexOf(num))}`).join(", ");
         }
-        const embed = new MessageEmbed();
+        const embed = new EmbedBuilder();
         embed.setTitle(code);
         embed.setColor(code as HexColorString);
         embed.setDescription(`${rgbPer()}`);

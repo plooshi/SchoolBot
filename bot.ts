@@ -1,8 +1,8 @@
-import { Client, Intents } from "discord.js";
+import { Client } from "discord.js";
 import { readdirSync } from 'fs';
 import { Event } from './types.js';
 import { token, spam } from "./data.js";
-const client = new Client({ intents: new Intents(32767) });
+const client = new Client({ intents: 32767 });
 const eventFiles = readdirSync('./out/events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {

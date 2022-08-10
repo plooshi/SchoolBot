@@ -1,5 +1,5 @@
 import { spam } from "../data.js";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { Event } from "../types.js";
 
 export default {
@@ -28,11 +28,11 @@ export default {
             let onlyRole = newRoleIDs.filter(filterOutOld);
             let IDNum = onlyRole[0];
 
-            const newRoleAdded = new MessageEmbed()
-                .setTitle(`Role added to ${newMember.displayName}`)
-                .addField("Role", `<@&${IDNum}>`)
-                .setColor("#00ff00")
-                .setTimestamp();
+            const newRoleAdded = new EmbedBuilder();
+            newRoleAdded.setTitle(`Role added to ${newMember.displayName}`);
+            newRoleAdded.addFields([{ name: "Role", value: `<@&${IDNum}>` }]);
+            newRoleAdded.setColor("#00ff00");
+            newRoleAdded.setTimestamp();
 
             await spam.send({ embeds: [newRoleAdded] });
         } else if (newRoleIDs.length < oldRoleIDs.length) {
@@ -48,22 +48,22 @@ export default {
             let onlyRole = oldRoleIDs.filter(filterOutNew);
             let IDNum = onlyRole[0];
 
-            const newRoleAdded = new MessageEmbed()
-                .setTitle(`Role removed from ${newMember.displayName}`)
-                .addField("Role", `<@&${IDNum}>`)
-                .setColor("#ff0000")
-                .setTimestamp();
+            const newRoleAdded = new EmbedBuilder();
+            newRoleAdded.setTitle(`Role removed from ${newMember.displayName}`);
+            newRoleAdded.addFields([{ name: "Role", value: `<@&${IDNum}>` }]);
+            newRoleAdded.setColor("#ff0000");
+            newRoleAdded.setTimestamp();
 
             await spam.send({ embeds: [newRoleAdded] });
         }
 
         if (oldMember.nickname !== newMember.nickname) {
-            const newNickname = new MessageEmbed()
-                .setTitle(`${newMember.displayName} changed their nickname!`)
-                .addField("Old nickname", oldMember.nickname == null ? "None" : oldMember.nickname)
-                .addField("New nickname", newMember.nickname == null ? "None" : newMember.nickname)
-                .setColor("#0000ff")
-                .setTimestamp();
+            const newNickname = new EmbedBuilder();
+            newNickname.setTitle(`${newMember.displayName} changed their nickname!`);
+            newNickname.addFields([{ name: "Old nickname", value: oldMember.nickname == null ? "None" : oldMember.nickname }]);
+            newNickname.addFields([{ name: "New nickname", value: newMember.nickname == null ? "None" : newMember.nickname }]);
+            newNickname.setColor("#0000ff");
+            newNickname.setTimestamp();
             await spam.send({ embeds: [newNickname] });
         }
     }

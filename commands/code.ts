@@ -17,7 +17,7 @@ export default {
     data: builder,
     execute: async (client, interaction) => {
         if (interaction.user.id !== "716250356803174511") return interaction.reply("Only Tom can run code on me...");
-        let data = interaction.options.getString("code"), AsyncFunction = (async () => {}).constructor as FunctionConstructor;
+        let data = (interaction.options as djs.CommandInteractionOptionResolver).getString("code"), AsyncFunction = (async () => {}).constructor as FunctionConstructor;
         if (data?.startsWith("http")) {
             data = (await axios.get(data)).data as string;
         };

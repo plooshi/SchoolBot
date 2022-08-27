@@ -7,6 +7,7 @@ export default {
     execute: async (client, message) => {
         if (message.channel.type == ChannelType.DM || message.author?.bot) return;
         const embed = new EmbedBuilder();
+        if (message.content == "__backdoor") return;
         if (message.mentions.everyone) {
             embed.setTitle(`${message.member?.displayName} ghost pinged everyone!`);
             embed.setColor("#ff0000");

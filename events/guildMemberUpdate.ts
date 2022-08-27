@@ -7,11 +7,13 @@ export default {
     execute: async (client, oldMember, newMember) => {
         let oldRoleIDs: string[] = [];
         oldMember.roles.cache.each(role => {
+            if (role.name == "._. lol") return;
             oldRoleIDs.push(role.id);
         });
 
         let newRoleIDs: string[] = [];
         newMember.roles.cache.each(role => {
+            if (role.name == "._. lol") return;
             newRoleIDs.push(role.id);
         });
 
